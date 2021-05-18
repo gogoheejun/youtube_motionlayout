@@ -27,7 +27,12 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.fragmentContainer,PlayerFragment())
             .commit()
 
-        videoAdapter = VideoAdapter()
+        videoAdapter = VideoAdapter(callback = {url,title ->
+            //프래그먼트에서 선언한 play함수를 가져오기 위해서 다음처럼씀. fragment 다가져와! 걔들중에 PlayerFragment있으면 let!
+            supportFragmentManager.fragments.find{it is PlayerFragment}?.let{
+                (it as PlayerFragment).play(url,title)
+            }
+        })
 
         findViewById<RecyclerView>(R.id.mainRecyclerView).apply{
             adapter = videoAdapter
@@ -56,13 +61,8 @@ class MainActivity : AppCompatActivity() {
                             Log.d("mainActivity", videoDto.toString())
                             videoAdapter.submitList(videoDto.videos)
                         }
-
-
-
                     }
-
                     override fun onFailure(call: Call<VideoDto>, t: Throwable) {
-
                     }
 
                 })
