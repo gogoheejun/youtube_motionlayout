@@ -17,6 +17,7 @@ class PlayerFragment:Fragment(R.layout.fragment_player) {
         val fragmentPlayerBinding = FragmentPlayerBinding.bind(view)
         binding = fragmentPlayerBinding
 
+        //playerfragment를 스와이프하면 바텀네비게이션도 생겼다없어졌다하잖아. 바텀네비게이션에 독자적인 핸들러를 주는대신 얘랑 연결해서 같이 움직이도록 하는거임
         fragmentPlayerBinding.playerMotionLayout.setTransitionListener(object:MotionLayout.TransitionListener{
             override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {
             }
@@ -38,6 +39,7 @@ class PlayerFragment:Fragment(R.layout.fragment_player) {
         })
     }
 
+    //잊지말고 해주기
     override fun onDestroy() {
         super.onDestroy()
 
