@@ -3,10 +3,12 @@ package com.hjhj.practice_youtube
 import android.content.Context
 import android.graphics.Rect
 import android.util.AttributeSet
+import android.util.Log
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import androidx.constraintlayout.motion.widget.MotionLayout
+import kotlin.math.log
 
 class CustomMotionLayout(context: Context, attributeSet:AttributeSet?=null): MotionLayout(context,attributeSet) {
     private var motionTouchStarted = false
@@ -45,6 +47,9 @@ class CustomMotionLayout(context: Context, attributeSet:AttributeSet?=null): Mot
             mainContainerView.getHitRect(hitRect)
             motionTouchStarted = hitRect.contains(event.x.toInt(), event.y.toInt())
         }
+        Log.d("touchTest", super.onTouchEvent(event).toString()+ "//"+motionTouchStarted.toString()
+                +"//터치위치:"+event.x.toString()+","+event.y.toString()
+                +"//rect위치:"+hitRect.toString())
         return super.onTouchEvent(event)&&motionTouchStarted
     }
 
