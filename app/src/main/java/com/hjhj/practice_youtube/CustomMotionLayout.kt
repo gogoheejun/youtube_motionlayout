@@ -76,6 +76,7 @@ class CustomMotionLayout(context: Context, attributeSet:AttributeSet?=null): Mot
         GestureDetector(context,gestureListener)
     }
 
+    //아래코드 없어도 잘 되는데?? 왶 ㅣㄹ요하지
     override fun onInterceptTouchEvent(event: MotionEvent?): Boolean {
         Log.d("test","onInterceptTouchEvent")
         return gestureDetector.onTouchEvent(event)
